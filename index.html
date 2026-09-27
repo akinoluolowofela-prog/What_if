@@ -1,0 +1,3980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>What If?</title>
+
+<style>
+:root {
+  --bg: #05070a;
+  --panel: #0b1017;
+  --panel2: #101720;
+  --border: #1c2733;
+
+  --text: #f4f7fb;
+  --muted: #7e8a9b;
+
+  --cyan: #42e8d0;
+  --blue: #6ea8ff;
+
+  --green: #51dc8b;
+  --yellow: #ffd166;
+  --orange: #ff9f43;
+  --red: #ff536d;
+
+  --shadow: 0 20px 70px rgba(0,0,0,.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% -20%,
+      #172538 0%,
+      transparent 45%
+    ),
+    var(--bg);
+
+  color: var(--text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+  width: min(1200px, calc(100% - 40px));
+  margin: auto;
+
+  padding: 24px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-weight: 800;
+  letter-spacing: -.04em;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--cyan),
+      var(--blue)
+    );
+
+  color: #061014;
+  font-weight: 900;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid var(--border);
+
+  background: rgba(255,255,255,.025);
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--green);
+
+  box-shadow:
+    0 0 12px var(--green);
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  width: min(850px, calc(100% - 40px));
+  margin: 70px auto 45px;
+
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+
+  color: var(--cyan);
+
+  border: 1px solid rgba(66,232,208,.2);
+
+  background: rgba(66,232,208,.04);
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: .08em;
+}
+
+.hero h1 {
+  margin: 20px 0 20px;
+
+  font-size: clamp(48px, 8vw, 86px);
+
+  line-height: .92;
+
+  letter-spacing: -.08em;
+}
+
+.gradient {
+  background:
+    linear-gradient(
+      100deg,
+      var(--cyan),
+      var(--blue)
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 650px;
+
+  margin: auto;
+
+  color: var(--muted);
+
+  font-size: 17px;
+
+  line-height: 1.65;
+}
+
+/* =========================================
+   MAIN
+========================================= */
+
+main {
+  width: min(1200px, calc(100% - 40px));
+  margin: auto;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 40px 0 15px;
+}
+
+.section-title h2 {
+  margin: 0;
+
+  font-size: 17px;
+
+  letter-spacing: -.03em;
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* =========================================
+   SEARCH / FILTERS
+========================================= */
+
+.search-row {
+  display: grid;
+
+  grid-template-columns: 1fr 160px;
+
+  gap: 10px;
+}
+
+.search {
+  width: 100%;
+
+  padding: 17px 19px;
+
+  border-radius: 14px;
+
+  border: 1px solid var(--border);
+
+  background: var(--panel);
+
+  color: var(--text);
+
+  outline: none;
+}
+
+.search:focus {
+  border-color: rgba(66,232,208,.5);
+
+  box-shadow:
+    0 0 0 4px rgba(66,232,208,.06);
+}
+
+.search::placeholder {
+  color: #566171;
+}
+
+.filter {
+  padding: 0 14px;
+
+  border-radius: 14px;
+
+  border: 1px solid var(--border);
+
+  background: var(--panel);
+
+  color: var(--muted);
+
+  outline: none;
+}
+
+.filter:focus {
+  border-color: rgba(66,232,208,.5);
+}
+
+/* =========================================
+   SCENARIOS
+========================================= */
+
+.scenarios {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 10px;
+}
+
+.scenario {
+  position: relative;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  background: var(--panel);
+
+  color: var(--text);
+
+  text-align: left;
+
+  transition:
+    transform .2s,
+    border .2s,
+    background .2s;
+}
+
+.scenario:hover {
+  transform: translateY(-2px);
+
+  background: var(--panel2);
+
+  border-color: #304052;
+}
+
+.scenario.active {
+  border-color: var(--cyan);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(66,232,208,.09),
+      rgba(110,168,255,.04)
+    );
+
+  box-shadow:
+    0 0 0 1px rgba(66,232,208,.1);
+}
+
+.scenario-icon {
+  display: inline-flex;
+
+  width: 30px;
+  height: 30px;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  margin-bottom: 15px;
+
+  background: rgba(66,232,208,.07);
+
+  border: 1px solid rgba(66,232,208,.12);
+
+  color: var(--cyan);
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+.scenario h3 {
+  margin: 0 0 5px;
+
+  font-size: 15px;
+}
+
+.scenario p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.scenario-category {
+  margin-top: 12px;
+
+  color: #586577;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: .08em;
+}
+
+/* =========================================
+   SELECTED
+========================================= */
+
+.selected {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+
+  margin-top: 15px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  color: #ffabb7;
+
+  background: rgba(255,83,109,.07);
+
+  border: 1px solid rgba(255,83,109,.2);
+
+  font-size: 12px;
+}
+
+.pill button {
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  padding: 0;
+}
+
+.selection-actions {
+  display: flex;
+
+  gap: 7px;
+
+  margin-top: 12px;
+}
+
+.small-action {
+  padding: 7px 11px;
+
+  border-radius: 8px;
+
+  border: 1px solid var(--border);
+
+  background: #111821;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.small-action:hover {
+  color: var(--text);
+
+  border-color: #344355;
+}
+
+/* =========================================
+   CONTROL BAR
+========================================= */
+
+.controls {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 15px 18px;
+
+  border: 1px solid var(--border);
+
+  background: var(--panel);
+
+  border-radius: 15px;
+
+  margin-bottom: 15px;
+}
+
+.time-control {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex: 1;
+}
+
+.time-display {
+  min-width: 100px;
+
+  font-weight: 800;
+
+  color: var(--cyan);
+}
+
+input[type="range"] {
+  width: 240px;
+
+  accent-color: var(--cyan);
+}
+
+.speed-control {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.speed-control select {
+  padding: 7px 9px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 8px;
+
+  background: #111821;
+
+  color: var(--text);
+
+  outline: none;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 7px;
+}
+
+.control-button {
+  padding: 8px 12px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  background: #111821;
+
+  color: var(--muted);
+}
+
+.control-button:hover {
+  color: var(--text);
+
+  border-color: #344355;
+}
+
+.control-button.primary {
+  color: #07100f;
+
+  background: var(--cyan);
+
+  border-color: var(--cyan);
+
+  font-weight: 800;
+}
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dashboard {
+  display: grid;
+
+  grid-template-columns:
+    1fr 330px;
+
+  gap: 15px;
+}
+
+.panel {
+  border: 1px solid var(--border);
+
+  background: var(--panel);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow);
+}
+
+.panel-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 17px 20px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-header h3 {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+.panel-header span {
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+/* =========================================
+   STABILITY
+========================================= */
+
+.stability {
+  padding: 25px;
+}
+
+.stability-number {
+  font-size: 58px;
+
+  font-weight: 900;
+
+  letter-spacing: -.07em;
+
+  margin-bottom: 3px;
+}
+
+.stability-label {
+  color: var(--muted);
+
+  font-size: 12px;
+
+  margin-bottom: 20px;
+}
+
+.stability-bar {
+  height: 9px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background: #171e27;
+}
+
+.stability-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition:
+    width .5s ease,
+    background .5s ease;
+}
+
+.stat-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.stat {
+  padding: 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.015);
+}
+
+.stat-value {
+  font-weight: 800;
+
+  font-size: 18px;
+}
+
+.stat-name {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+/* =========================================
+   IMPACT
+========================================= */
+
+.impacts {
+  padding: 22px;
+}
+
+.impact {
+  margin-bottom: 19px;
+}
+
+.impact:last-child {
+  margin-bottom: 0;
+}
+
+.impact-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+
+  font-size: 12px;
+}
+
+.impact-top span:last-child {
+  color: var(--muted);
+}
+
+.impact-bar {
+  height: 6px;
+
+  background: #18202a;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+}
+
+.impact-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition:
+    width .5s,
+    background .5s;
+}
+
+/* =========================================
+   GRAPH
+========================================= */
+
+.graph-panel {
+  margin-top: 15px;
+}
+
+.graph {
+  height: 550px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(66,232,208,.025),
+      transparent 55%
+    );
+}
+
+.grid {
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+  mask-image:
+    radial-gradient(
+      circle,
+      black,
+      transparent 80%
+    );
+}
+
+.node {
+  position: absolute;
+
+  transform: translate(-50%, -50%);
+
+  padding: 13px 17px;
+
+  border-radius: 13px;
+
+  border: 1px solid #293544;
+
+  background: #111821;
+
+  color: #dce3eb;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  z-index: 3;
+
+  transition:
+    .5s;
+
+  cursor: pointer;
+}
+
+.node:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.04);
+
+  z-index: 10;
+}
+
+.node.failed {
+  background: rgba(255,83,109,.13);
+
+  border-color: var(--red);
+
+  color: #ffb0bb;
+
+  box-shadow:
+    0 0 30px rgba(255,83,109,.2);
+}
+
+.node.damaged {
+  background: rgba(255,159,67,.1);
+
+  border-color: var(--orange);
+
+  color: #ffc28a;
+}
+
+.node.warning {
+  background: rgba(255,209,102,.08);
+
+  border-color: var(--yellow);
+
+  color: #ffe29a;
+}
+
+.node.healthy {
+  background: rgba(81,220,139,.04);
+
+  border-color: rgba(81,220,139,.2);
+}
+
+.edge {
+  position: absolute;
+
+  height: 2px;
+
+  transform-origin: left center;
+
+  background: #273342;
+
+  z-index: 1;
+
+  transition:
+    background .5s,
+    box-shadow .5s;
+}
+
+.edge.failed {
+  background: var(--red);
+
+  box-shadow:
+    0 0 8px rgba(255,83,109,.5);
+}
+
+.edge.damaged {
+  background: var(--orange);
+}
+
+.edge.warning {
+  background: var(--yellow);
+}
+
+/* =========================================
+   EVENT LOG
+========================================= */
+
+.log {
+  padding: 5px 20px 20px;
+}
+
+.event {
+  display: grid;
+
+  grid-template-columns:
+    70px 12px 1fr;
+
+  gap: 10px;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+
+.event:last-child {
+  border: 0;
+}
+
+.event-time {
+  color: var(--cyan);
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.event-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  margin-top: 4px;
+
+  background: var(--orange);
+
+  box-shadow:
+    0 0 9px rgba(255,159,67,.5);
+}
+
+.event-dot.critical {
+  background: var(--red);
+
+  box-shadow:
+    0 0 9px rgba(255,83,109,.5);
+}
+
+.event-dot.warning {
+  background: var(--yellow);
+
+  box-shadow:
+    0 0 9px rgba(255,209,102,.5);
+}
+
+.event-dot.safe {
+  background: var(--green);
+
+  box-shadow:
+    0 0 9px rgba(81,220,139,.5);
+}
+
+.event-text {
+  color: #c5ced9;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+}
+
+/* =========================================
+   DETAILS PANEL
+========================================= */
+
+.details-panel {
+  margin-top: 15px;
+}
+
+.details {
+  padding: 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+}
+
+.detail-card {
+  padding: 15px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.015);
+}
+
+.detail-card h4 {
+  margin: 0 0 7px;
+
+  font-size: 12px;
+}
+
+.detail-card p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.timeline {
+  padding: 20px;
+}
+
+.timeline-track {
+  display: grid;
+
+  grid-template-columns:
+    repeat(6, 1fr);
+
+  gap: 8px;
+}
+
+.timeline-step {
+  position: relative;
+
+  padding: 13px 10px;
+
+  text-align: center;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.015);
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  transition: .2s;
+}
+
+.timeline-step.active {
+  border-color: var(--cyan);
+
+  color: var(--cyan);
+
+  background: rgba(66,232,208,.05);
+}
+
+.timeline-step strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: inherit;
+
+  font-size: 11px;
+}
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.summary {
+  padding: 20px;
+}
+
+.summary-box {
+  padding: 18px;
+
+  border: 1px solid rgba(66,232,208,.12);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(66,232,208,.04),
+      rgba(110,168,255,.025)
+    );
+}
+
+.summary-box h3 {
+  margin: 0 0 8px;
+
+  font-size: 14px;
+}
+
+.summary-box p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.empty {
+  padding: 60px 20px;
+
+  text-align: center;
+
+  color: var(--muted);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  margin-top: 80px;
+
+  padding: 30px;
+
+  border-top: 1px solid var(--border);
+
+  color: #566171;
+
+  text-align: center;
+
+  font-size: 11px;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width: 900px) {
+
+  .scenarios {
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .details {
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .controls {
+    flex-wrap: wrap;
+  }
+
+}
+
+@media(max-width: 600px) {
+
+  header,
+  main {
+    width: calc(100% - 24px);
+  }
+
+  .hero {
+    width: calc(100% - 24px);
+
+    margin-top: 45px;
+  }
+
+  .scenarios {
+    grid-template-columns: 1fr;
+  }
+
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .time-control {
+    flex-wrap: wrap;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  .control-buttons {
+    width: 100%;
+  }
+
+  .control-button {
+    flex: 1;
+  }
+
+  .speed-control {
+    justify-content: space-between;
+  }
+
+  .graph {
+    height: 420px;
+  }
+
+  .hero h1 {
+    font-size: 54px;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-track {
+    grid-template-columns:
+      repeat(3,1fr);
+  }
+
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="logo">
+    <div class="logo-icon">?</div>
+    What If?
+  </div>
+
+  <div class="status">
+    <span class="status-dot"></span>
+    SYSTEM ONLINE
+  </div>
+
+</header>
+
+
+<section class="hero">
+
+  <div class="eyebrow">
+    INFRASTRUCTURE SIMULATOR
+  </div>
+
+  <h1>
+    What happens if
+    <span class="gradient">it disappears?</span>
+  </h1>
+
+  <p>
+    Remove something ordinary from civilization and watch
+    the consequences propagate through the systems around it.
+  </p>
+
+</section>
+
+
+<main>
+
+  <div class="section-title">
+
+    <h2>Remove something</h2>
+
+    <span>
+      You can remove multiple systems
+    </span>
+
+  </div>
+
+
+  <div class="search-row">
+
+    <input
+      id="search"
+      class="search"
+      placeholder="Search electricity, GPS, water..."
+    >
+
+    <select
+      id="categoryFilter"
+      class="filter"
+    >
+      <option value="all">All systems</option>
+      <option value="infrastructure">Infrastructure</option>
+      <option value="technology">Technology</option>
+      <option value="resources">Resources</option>
+      <option value="society">Society</option>
+      <option value="health">Health</option>
+    </select>
+
+  </div>
+
+
+  <div
+    id="scenarios"
+    class="scenarios"
+    style="margin-top:12px"
+  ></div>
+
+
+  <div
+    id="selected"
+    class="selected"
+  ></div>
+
+
+  <div class="selection-actions">
+
+    <button
+      class="small-action"
+      onclick="selectRandomSystem()"
+    >
+      Random scenario
+    </button>
+
+    <button
+      class="small-action"
+      onclick="selectHighImpactSystems()"
+    >
+      High impact
+    </button>
+
+    <button
+      class="small-action"
+      onclick="clearSelection()"
+    >
+      Clear selection
+    </button>
+
+  </div>
+
+
+  <div class="section-title">
+
+    <h2>Simulation</h2>
+
+    <span id="currentScenario">
+      Nothing has disappeared
+    </span>
+
+  </div>
+
+
+  <div class="controls">
+
+    <div class="time-control">
+
+      <div
+        id="timeDisplay"
+        class="time-display"
+      >
+        NOW
+      </div>
+
+      <input
+        id="timeSlider"
+        type="range"
+        min="0"
+        max="5"
+        value="0"
+      >
+
+      <div class="speed-control">
+
+        <span>Speed</span>
+
+        <select id="speedSelect">
+
+          <option value="1800">Slow</option>
+
+          <option
+            value="1200"
+            selected
+          >
+            Normal
+          </option>
+
+          <option value="700">Fast</option>
+
+          <option value="350">Very fast</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-buttons">
+
+      <button
+        class="control-button"
+        onclick="stepBackward()"
+      >
+        Previous
+      </button>
+
+      <button
+        class="control-button"
+        onclick="resetSimulation()"
+      >
+        Reset
+      </button>
+
+      <button
+        class="control-button primary"
+        id="playButton"
+        onclick="togglePlay()"
+      >
+        Play
+      </button>
+
+      <button
+        class="control-button"
+        onclick="stepForward()"
+      >
+        Next
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="dashboard">
+
+
+    <!-- LEFT -->
+
+    <section class="panel">
+
+      <div class="panel-header">
+
+        <h3>
+          System stability
+        </h3>
+
+        <span>
+          At current point in time
+        </span>
+
+      </div>
+
+
+      <div class="stability">
+
+        <div
+          id="stabilityNumber"
+          class="stability-number"
+        >
+          100%
+        </div>
+
+        <div class="stability-label">
+          civilization-wide system stability
+        </div>
+
+
+        <div class="stability-bar">
+
+          <div
+            id="stabilityFill"
+            class="stability-fill"
+            style="width:100%"
+          ></div>
+
+        </div>
+
+
+        <div
+          id="stats"
+          class="stat-grid"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RIGHT -->
+
+    <section class="panel">
+
+      <div class="panel-header">
+
+        <h3>
+          Impact
+        </h3>
+
+        <span>
+          Current estimate
+        </span>
+
+      </div>
+
+
+      <div
+        id="impacts"
+        class="impacts"
+      ></div>
+
+    </section>
+
+
+  </div>
+
+
+  <!-- GRAPH -->
+
+  <section class="panel graph-panel">
+
+    <div class="panel-header">
+
+      <h3>
+        Dependency network
+      </h3>
+
+      <span>
+        Failures propagate through dependencies
+      </span>
+
+    </div>
+
+
+    <div
+      id="graph"
+      class="graph"
+    >
+
+      <div class="grid"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DETAILS -->
+
+  <section class="panel details-panel">
+
+    <div class="panel-header">
+
+      <h3>
+        System analysis
+      </h3>
+
+      <span>
+        Current simulation details
+      </span>
+
+    </div>
+
+
+    <div
+      id="details"
+      class="details"
+    ></div>
+
+  </section>
+
+
+  <!-- TIMELINE -->
+
+  <div class="section-title">
+
+    <h2>
+      Simulation timeline
+    </h2>
+
+    <span>
+      Move through the consequences
+    </span>
+
+  </div>
+
+
+  <section class="panel">
+
+    <div class="timeline">
+
+      <div
+        id="timeline"
+        class="timeline-track"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- EVENT LOG -->
+
+  <div class="section-title">
+
+    <h2>
+      What is happening?
+    </h2>
+
+    <span>
+      Simulation event log
+    </span>
+
+  </div>
+
+
+  <section class="panel">
+
+    <div
+      id="log"
+      class="log"
+    >
+
+      <div class="empty">
+        Select a system to begin the simulation.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SUMMARY -->
+
+  <section class="panel details-panel">
+
+    <div class="panel-header">
+
+      <h3>
+        Simulation summary
+      </h3>
+
+      <span>
+        Current state
+      </span>
+
+    </div>
+
+
+    <div class="summary">
+
+      <div
+        id="summary"
+        class="summary-box"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  WHAT IF? · An interactive exploration of invisible infrastructure.
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   SYSTEM DATA
+===================================================== */
+
+const SYSTEMS = {
+
+  electricity: {
+    name: "Electricity",
+    code: "EL",
+    description:
+      "The electrical grid stops supplying power.",
+    baseImpact: 100,
+    category: "infrastructure",
+    recovery: 90
+  },
+
+  internet: {
+    name: "Internet",
+    code: "IN",
+    description:
+      "The public internet becomes unavailable.",
+    baseImpact: 90,
+    category: "technology",
+    recovery: 75
+  },
+
+  gps: {
+    name: "GPS",
+    code: "GP",
+    description:
+      "Global satellite positioning becomes unavailable.",
+    baseImpact: 70,
+    category: "technology",
+    recovery: 65
+  },
+
+  water: {
+    name: "Clean Water",
+    code: "WA",
+    description:
+      "Reliable treated water disappears.",
+    baseImpact: 100,
+    category: "resources",
+    recovery: 90
+  },
+
+  fuel: {
+    name: "Fuel",
+    code: "FU",
+    description:
+      "Petrol and diesel become unavailable.",
+    baseImpact: 95,
+    category: "resources",
+    recovery: 85
+  },
+
+  refrigeration: {
+    name: "Refrigeration",
+    code: "RF",
+    description:
+      "Reliable refrigeration disappears.",
+    baseImpact: 80,
+    category: "infrastructure",
+    recovery: 70
+  },
+
+  transport: {
+    name: "Transport",
+    code: "TR",
+    description:
+      "Large-scale movement of people and goods is disrupted.",
+    baseImpact: 75,
+    category: "infrastructure",
+    recovery: 70
+  },
+
+  food: {
+    name: "Food Supply",
+    code: "FO",
+    description:
+      "Food production and distribution become unreliable.",
+    baseImpact: 85,
+    category: "resources",
+    recovery: 80
+  },
+
+  healthcare: {
+    name: "Healthcare",
+    code: "HC",
+    description:
+      "Healthcare services become severely constrained.",
+    baseImpact: 90,
+    category: "health",
+    recovery: 75
+  },
+
+  communication: {
+    name: "Communication",
+    code: "CO",
+    description:
+      "Reliable communication becomes difficult.",
+    baseImpact: 70,
+    category: "technology",
+    recovery: 65
+  },
+
+  economy: {
+    name: "Economy",
+    code: "EC",
+    description:
+      "Economic activity becomes increasingly disrupted.",
+    baseImpact: 80,
+    category: "society",
+    recovery: 60
+  },
+
+  sanitation: {
+    name: "Sanitation",
+    code: "SA",
+    description:
+      "Waste and hygiene systems become unreliable.",
+    baseImpact: 75,
+    category: "infrastructure",
+    recovery: 75
+  },
+
+  logistics: {
+    name: "Logistics",
+    code: "LG",
+    description:
+      "Large-scale supply coordination becomes difficult.",
+    baseImpact: 70,
+    category: "infrastructure",
+    recovery: 70
+  },
+
+  banking: {
+    name: "Banking",
+    code: "BK",
+    description:
+      "Banking transactions and financial infrastructure become unavailable.",
+    baseImpact: 75,
+    category: "society",
+    recovery: 65
+  },
+
+  agriculture: {
+    name: "Agriculture",
+    code: "AG",
+    description:
+      "Large-scale agricultural production becomes constrained.",
+    baseImpact: 80,
+    category: "resources",
+    recovery: 85
+  },
+
+  emergency: {
+    name: "Emergency Services",
+    code: "ES",
+    description:
+      "Emergency response becomes slower and less reliable.",
+    baseImpact: 85,
+    category: "health",
+    recovery: 75
+  },
+
+  manufacturing: {
+    name: "Manufacturing",
+    code: "MF",
+    description:
+      "Industrial production becomes severely disrupted.",
+    baseImpact: 78,
+    category: "infrastructure",
+    recovery: 75
+  },
+
+  education: {
+    name: "Education",
+    code: "ED",
+    description:
+      "Schools and learning infrastructure become disrupted.",
+    baseImpact: 55,
+    category: "society",
+    recovery: 55
+  },
+
+  aviation: {
+    name: "Aviation",
+    code: "AV",
+    description:
+      "Commercial and cargo aviation becomes unreliable.",
+    baseImpact: 65,
+    category: "infrastructure",
+    recovery: 70
+  }
+
+};
+
+
+/* =====================================================
+   DEPENDENCY NETWORK
+=====================================================
+
+A -> B means B depends on A.
+*/
+
+const DEPENDENCIES = [
+
+  ["electricity", "internet"],
+  ["electricity", "water"],
+  ["electricity", "refrigeration"],
+  ["electricity", "healthcare"],
+  ["electricity", "communication"],
+  ["electricity", "banking"],
+  ["electricity", "manufacturing"],
+  ["electricity", "emergency"],
+
+  ["internet", "communication"],
+  ["internet", "economy"],
+  ["internet", "logistics"],
+  ["internet", "banking"],
+  ["internet", "education"],
+
+  ["gps", "logistics"],
+  ["gps", "transport"],
+  ["gps", "aviation"],
+
+  ["fuel", "transport"],
+  ["fuel", "logistics"],
+  ["fuel", "agriculture"],
+  ["fuel", "aviation"],
+  ["fuel", "manufacturing"],
+
+  ["transport", "food"],
+  ["transport", "healthcare"],
+  ["transport", "agriculture"],
+  ["transport", "manufacturing"],
+
+  ["water", "sanitation"],
+  ["water", "healthcare"],
+  ["water", "food"],
+  ["water", "agriculture"],
+
+  ["refrigeration", "food"],
+  ["refrigeration", "healthcare"],
+
+  ["logistics", "food"],
+  ["logistics", "economy"],
+  ["logistics", "manufacturing"],
+  ["logistics", "agriculture"],
+
+  ["communication", "economy"],
+  ["communication", "emergency"],
+
+  ["food", "economy"],
+  ["food", "healthcare"],
+
+  ["banking", "economy"],
+  ["economy", "manufacturing"],
+  ["economy", "education"],
+
+  ["agriculture", "food"],
+  ["manufacturing", "economy"],
+
+  ["emergency", "healthcare"],
+  ["aviation", "logistics"]
+
+];
+
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let selected = [];
+
+let currentTime = 0;
+
+let playing = false;
+
+let playTimer = null;
+
+let lastState = null;
+
+
+const TIMES = [
+
+  "NOW",
+  "6 HOURS",
+  "24 HOURS",
+  "3 DAYS",
+  "1 WEEK",
+  "1 MONTH"
+
+];
+
+
+/* =====================================================
+   SCENARIO CARDS
+===================================================== */
+
+function renderScenarios(search = "") {
+
+  const container =
+    document.getElementById("scenarios");
+
+  const query =
+    search.toLowerCase().trim();
+
+  const category =
+    document.getElementById(
+      "categoryFilter"
+    ).value;
+
+
+  const entries =
+    Object.entries(SYSTEMS)
+      .filter(([key, item]) => {
+
+        const matchesSearch =
+          item.name
+            .toLowerCase()
+            .includes(query) ||
+
+          item.description
+            .toLowerCase()
+            .includes(query);
+
+
+        const matchesCategory =
+          category === "all" ||
+          item.category === category;
+
+
+        return (
+          matchesSearch &&
+          matchesCategory
+        );
+
+      });
+
+
+  if (!entries.length) {
+
+    container.innerHTML = `
+      <div class="empty">
+        No systems match your search.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    entries.map(([key, item]) => {
+
+      const active =
+        selected.includes(key);
+
+
+      return `
+
+        <button
+          class="scenario ${active ? "active" : ""}"
+          onclick="toggleSystem('${key}')"
+        >
+
+          <div class="scenario-icon">
+            ${item.code}
+          </div>
+
+          <h3>
+            ${item.name}
+          </h3>
+
+          <p>
+            ${item.description}
+          </p>
+
+          <div class="scenario-category">
+            ${item.category}
+          </div>
+
+        </button>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   SELECT SYSTEM
+===================================================== */
+
+function toggleSystem(key) {
+
+  if (selected.includes(key)) {
+
+    selected =
+      selected.filter(
+        item => item !== key
+      );
+
+  } else {
+
+    selected.push(key);
+
+  }
+
+
+  currentTime = 0;
+
+  document.getElementById(
+    "timeSlider"
+  ).value = 0;
+
+
+  renderAll();
+
+}
+
+
+function removeSystem(key) {
+
+  selected =
+    selected.filter(
+      item => item !== key
+    );
+
+  currentTime = 0;
+
+  renderAll();
+
+}
+
+
+function clearSelection() {
+
+  stopPlay();
+
+  selected = [];
+
+  currentTime = 0;
+
+  document.getElementById(
+    "timeSlider"
+  ).value = 0;
+
+  renderAll();
+
+}
+
+
+/* =====================================================
+   RANDOM SCENARIOS
+===================================================== */
+
+function selectRandomSystem() {
+
+  const keys =
+    Object.keys(SYSTEMS);
+
+  const random =
+    keys[
+      Math.floor(
+        Math.random() * keys.length
+      )
+    ];
+
+
+  selected = [random];
+
+  currentTime = 0;
+
+  document.getElementById(
+    "timeSlider"
+  ).value = 0;
+
+  renderAll();
+
+}
+
+
+function selectHighImpactSystems() {
+
+  selected =
+    Object.entries(SYSTEMS)
+      .sort(
+        (a,b) =>
+          b[1].baseImpact -
+          a[1].baseImpact
+      )
+      .slice(0, 3)
+      .map(
+        ([key]) => key
+      );
+
+
+  currentTime = 0;
+
+  document.getElementById(
+    "timeSlider"
+  ).value = 0;
+
+  renderAll();
+
+}
+
+
+/* =====================================================
+   SELECTED PILLS
+===================================================== */
+
+function renderSelected() {
+
+  const container =
+    document.getElementById("selected");
+
+
+  if (!selected.length) {
+
+    container.innerHTML = "";
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    selected.map(key => {
+
+      const item = SYSTEMS[key];
+
+      return `
+
+        <div class="pill">
+
+          ${item.name}
+
+          <button
+            aria-label="Remove ${item.name}"
+            onclick="removeSystem('${key}')"
+          >
+            ×
+          </button>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   FAILURE PROPAGATION
+===================================================== */
+
+function calculateState() {
+
+  const failed = new Set();
+
+  const damaged = new Set();
+
+  const warning = new Set();
+
+
+  selected.forEach(
+    key => failed.add(key)
+  );
+
+
+  const propagationLevels = [
+
+    0.00,
+    0.22,
+    0.42,
+    0.64,
+    0.84,
+    1.00
+
+  ];
+
+
+  const propagation =
+    propagationLevels[currentTime];
+
+
+  let changed = true;
+
+
+  /*
+    Propagation happens in waves.
+  */
+
+  while (changed) {
+
+    changed = false;
+
+
+    DEPENDENCIES.forEach(
+      ([source, target]) => {
+
+        if (!failed.has(source)) {
+          return;
+        }
+
+
+        if (propagation >= 0.84) {
+
+          if (!failed.has(target)) {
+
+            failed.add(target);
+
+            changed = true;
+
+          }
+
+        }
+
+        else if (propagation >= 0.42) {
+
+          if (
+            !damaged.has(target) &&
+            !failed.has(target)
+          ) {
+
+            damaged.add(target);
+
+            changed = true;
+
+          }
+
+        }
+
+        else if (propagation > 0) {
+
+          if (
+            !warning.has(target) &&
+            !failed.has(target)
+          ) {
+
+            warning.add(target);
+
+            changed = true;
+
+          }
+
+        }
+
+      }
+    );
+
+
+    failed.forEach(key => {
+
+      damaged.delete(key);
+
+      warning.delete(key);
+
+    });
+
+  }
+
+
+  return {
+    failed,
+    damaged,
+    warning
+  };
+
+}
+
+
+/* =====================================================
+   STABILITY
+===================================================== */
+
+function calculateStability(state) {
+
+  const total =
+    Object.keys(SYSTEMS).length;
+
+
+  let damage = 0;
+
+
+  state.failed.forEach(
+    key => {
+
+      damage +=
+        SYSTEMS[key].baseImpact / 100;
+
+    }
+  );
+
+
+  state.damaged.forEach(
+    key => {
+
+      damage +=
+        (SYSTEMS[key].baseImpact / 100)
+        * .55;
+
+    }
+  );
+
+
+  state.warning.forEach(
+    key => {
+
+      damage +=
+        (SYSTEMS[key].baseImpact / 100)
+        * .2;
+
+    }
+  );
+
+
+  /*
+    Multiple simultaneous failures
+    increase systemic pressure.
+  */
+
+  if (selected.length > 1) {
+
+    damage *=
+      1 +
+      (selected.length - 1) * .08;
+
+  }
+
+
+  let stability =
+    100 -
+    (damage / total) * 100;
+
+
+  return Math.max(
+    0,
+    Math.min(
+      100,
+      Math.round(stability)
+    )
+  );
+
+}
+
+
+/* =====================================================
+   IMPACT
+===================================================== */
+
+function getImpactValue(key, state) {
+
+  if (state.failed.has(key)) {
+    return 100;
+  }
+
+  if (state.damaged.has(key)) {
+    return 68;
+  }
+
+  if (state.warning.has(key)) {
+    return 30;
+  }
+
+  return 0;
+
+}
+
+
+function renderImpact(state) {
+
+  const container =
+    document.getElementById("impacts");
+
+
+  const categories = [
+
+    ["Food Supply", "food"],
+    ["Healthcare", "healthcare"],
+    ["Transport", "transport"],
+    ["Communication", "communication"],
+    ["Economy", "economy"],
+    ["Sanitation", "sanitation"],
+    ["Manufacturing", "manufacturing"],
+    ["Emergency Services", "emergency"]
+
+  ];
+
+
+  container.innerHTML =
+    categories.map(
+      ([name,key]) => {
+
+        const value =
+          getImpactValue(
+            key,
+            state
+          );
+
+
+        const color =
+          value >= 80
+            ? "var(--red)"
+            : value >= 50
+              ? "var(--orange)"
+              : value > 0
+                ? "var(--yellow)"
+                : "var(--green)";
+
+
+        return `
+
+          <div class="impact">
+
+            <div class="impact-top">
+
+              <span>
+                ${name}
+              </span>
+
+              <span>
+                ${value}%
+              </span>
+
+            </div>
+
+            <div class="impact-bar">
+
+              <div
+                class="impact-fill"
+                style="
+                  width:${value}%;
+                  background:${color};
+                "
+              ></div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/* =====================================================
+   STABILITY UI
+===================================================== */
+
+function renderStability(state) {
+
+  const stability =
+    calculateStability(state);
+
+
+  const number =
+    document.getElementById(
+      "stabilityNumber"
+    );
+
+  number.textContent =
+    `${stability}%`;
+
+
+  const fill =
+    document.getElementById(
+      "stabilityFill"
+    );
+
+
+  fill.style.width =
+    `${stability}%`;
+
+
+  const color =
+    stability > 70
+      ? "var(--green)"
+      : stability > 40
+        ? "var(--yellow)"
+        : stability > 20
+          ? "var(--orange)"
+          : "var(--red)";
+
+
+  fill.style.background =
+    color;
+
+
+  number.style.color =
+    color;
+
+
+  const stats =
+    document.getElementById("stats");
+
+
+  const total =
+    Object.keys(SYSTEMS).length;
+
+
+  stats.innerHTML = `
+
+    <div class="stat">
+
+      <div class="stat-value">
+        ${state.failed.size}
+      </div>
+
+      <div class="stat-name">
+        Systems failed
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-value">
+        ${state.damaged.size}
+      </div>
+
+      <div class="stat-name">
+        Systems damaged
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-value">
+        ${state.warning.size}
+      </div>
+
+      <div class="stat-name">
+        Systems at risk
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-value">
+        ${total}
+      </div>
+
+      <div class="stat-name">
+        Total systems
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-value">
+        ${selected.length}
+      </div>
+
+      <div class="stat-name">
+        Direct failures
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-value">
+        ${Math.max(
+          0,
+          state.failed.size -
+          selected.length
+        )}
+      </div>
+
+      <div class="stat-name">
+        Cascading failures
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   GRAPH
+===================================================== */
+
+function renderGraph(state) {
+
+  const graph =
+    document.getElementById("graph");
+
+
+  graph.innerHTML =
+    `<div class="grid"></div>`;
+
+
+  if (!selected.length) {
+
+    graph.innerHTML += `
+
+      <div class="empty">
+        Select a system to begin.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const visible =
+    new Set(selected);
+
+
+  let expanded = true;
+
+
+  while (expanded) {
+
+    expanded = false;
+
+
+    DEPENDENCIES.forEach(
+      ([a,b]) => {
+
+        if (
+          visible.has(a) &&
+          !visible.has(b)
+        ) {
+
+          visible.add(b);
+
+          expanded = true;
+
+        }
+
+      }
+    );
+
+  }
+
+
+  const nodes =
+    [...visible];
+
+
+  const positions = {};
+
+
+  /*
+    Place the first selected
+    systems near the center.
+  */
+
+  const selectedCount =
+    selected.length;
+
+
+  selected.forEach(
+    (key,index) => {
+
+      const angle =
+        index /
+        Math.max(selectedCount,1) *
+        Math.PI * 2;
+
+
+      const radius =
+        selectedCount === 1
+          ? 0
+          : 15;
+
+
+      positions[key] = {
+
+        x:
+          50 +
+          Math.cos(angle) *
+          radius,
+
+        y:
+          50 +
+          Math.sin(angle) *
+          radius
+
+      };
+
+    }
+  );
+
+
+  const remaining =
+    nodes.filter(
+      key => !selected.includes(key)
+    );
+
+
+  remaining.forEach(
+    (key,index) => {
+
+      const angle =
+        index /
+        Math.max(remaining.length,1) *
+        Math.PI * 2;
+
+
+      const radius =
+        remaining.length > 10
+          ? 39
+          : 33;
+
+
+      positions[key] = {
+
+        x:
+          50 +
+          Math.cos(angle) *
+          radius,
+
+        y:
+          50 +
+          Math.sin(angle) *
+          radius
+
+      };
+
+    }
+  );
+
+
+  /*
+    Edges.
+  */
+
+  DEPENDENCIES.forEach(
+    ([source,target]) => {
+
+      if (
+        !visible.has(source) ||
+        !visible.has(target)
+      ) {
+        return;
+      }
+
+
+      const a =
+        positions[source];
+
+      const b =
+        positions[target];
+
+
+      const dx =
+        b.x - a.x;
+
+      const dy =
+        b.y - a.y;
+
+
+      const length =
+        Math.sqrt(
+          dx * dx +
+          dy * dy
+        );
+
+
+      const angle =
+        Math.atan2(
+          dy,
+          dx
+        ) *
+        180 /
+        Math.PI;
+
+
+      const edge =
+        document.createElement("div");
+
+
+      edge.className =
+        "edge";
+
+
+      if (state.failed.has(target)) {
+
+        edge.classList.add("failed");
+
+      }
+
+      else if (state.damaged.has(target)) {
+
+        edge.classList.add("damaged");
+
+      }
+
+      else if (state.warning.has(target)) {
+
+        edge.classList.add("warning");
+
+      }
+
+
+      edge.style.left =
+        `${a.x}%`;
+
+      edge.style.top =
+        `${a.y}%`;
+
+      edge.style.width =
+        `${length}%`;
+
+      edge.style.transform =
+        `rotate(${angle}deg)`;
+
+
+      graph.appendChild(edge);
+
+    }
+  );
+
+
+  /*
+    Nodes.
+  */
+
+  nodes.forEach(key => {
+
+    const node =
+      document.createElement("div");
+
+
+    node.className =
+      "node";
+
+
+    if (state.failed.has(key)) {
+
+      node.classList.add("failed");
+
+    }
+
+    else if (state.damaged.has(key)) {
+
+      node.classList.add("damaged");
+
+    }
+
+    else if (state.warning.has(key)) {
+
+      node.classList.add("warning");
+
+    }
+
+    else {
+
+      node.classList.add("healthy");
+
+    }
+
+
+    node.textContent =
+      SYSTEMS[key].name;
+
+
+    node.style.left =
+      `${positions[key].x}%`;
+
+    node.style.top =
+      `${positions[key].y}%`;
+
+
+    node.title =
+      `${SYSTEMS[key].description} | Impact: ${SYSTEMS[key].baseImpact}%`;
+
+
+    node.onclick = () =>
+      showSystemDetails(key);
+
+
+    graph.appendChild(node);
+
+  });
+
+}
+
+
+/* =====================================================
+   SYSTEM DETAILS
+===================================================== */
+
+function showSystemDetails(key) {
+
+  const item =
+    SYSTEMS[key];
+
+
+  const state =
+    lastState ||
+    calculateState();
+
+
+  const status =
+    state.failed.has(key)
+      ? "Failed"
+      : state.damaged.has(key)
+        ? "Damaged"
+        : state.warning.has(key)
+          ? "At risk"
+          : "Operational";
+
+
+  const details =
+    document.getElementById(
+      "details"
+    );
+
+
+  details.innerHTML = `
+
+    <div class="detail-card">
+
+      <h4>
+        ${item.name}
+      </h4>
+
+      <p>
+        ${item.description}
+      </p>
+
+    </div>
+
+
+    <div class="detail-card">
+
+      <h4>
+        Current status
+      </h4>
+
+      <p>
+        ${status}. Base systemic impact:
+        ${item.baseImpact}%.
+      </p>
+
+    </div>
+
+
+    <div class="detail-card">
+
+      <h4>
+        Recovery difficulty
+      </h4>
+
+      <p>
+        Estimated recovery dependency:
+        ${item.recovery}%.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   DEFAULT DETAILS
+===================================================== */
+
+function renderDetails(state) {
+
+  const details =
+    document.getElementById(
+      "details"
+    );
+
+
+  if (!selected.length) {
+
+    details.innerHTML = `
+
+      <div class="detail-card">
+
+        <h4>
+          No active scenario
+        </h4>
+
+        <p>
+          Select one or more systems to
+          inspect how infrastructure
+          dependencies interact.
+        </p>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <h4>
+          Dependency model
+        </h4>
+
+        <p>
+          Each connection represents a
+          dependency between two systems.
+        </p>
+
+      </div>
+
+
+      <div class="detail-card">
+
+        <h4>
+          Simulation model
+        </h4>
+
+        <p>
+          Failure severity increases as
+          the simulation moves forward.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const failed =
+    state.failed.size;
+
+  const affected =
+    state.failed.size +
+    state.damaged.size +
+    state.warning.size;
+
+
+  details.innerHTML = `
+
+    <div class="detail-card">
+
+      <h4>
+        Affected network
+      </h4>
+
+      <p>
+        ${affected} of
+        ${Object.keys(SYSTEMS).length}
+        systems are currently affected.
+      </p>
+
+    </div>
+
+
+    <div class="detail-card">
+
+      <h4>
+        Cascading failures
+      </h4>
+
+      <p>
+        ${Math.max(
+          0,
+          failed - selected.length
+        )}
+        failures originated from
+        dependency propagation.
+      </p>
+
+    </div>
+
+
+    <div class="detail-card">
+
+      <h4>
+        Simulation point
+      </h4>
+
+      <p>
+        The simulation is currently at
+        ${TIMES[currentTime]}.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+function renderTimeline() {
+
+  const container =
+    document.getElementById(
+      "timeline"
+    );
+
+
+  container.innerHTML =
+    TIMES.map(
+      (time,index) => `
+
+        <button
+          class="
+            timeline-step
+            ${index === currentTime ? "active" : ""}
+          "
+          onclick="setTime(${index})"
+        >
+
+          <strong>
+            ${time}
+          </strong>
+
+          ${index === 0
+            ? "Initial"
+            : index === 1
+              ? "Early effects"
+              : index === 2
+                ? "Escalation"
+                : index === 3
+                  ? "Propagation"
+                  : index === 4
+                    ? "Systemic"
+                    : "Long-term"
+          }
+
+        </button>
+
+      `
+    ).join("");
+
+}
+
+
+/* =====================================================
+   EVENT LOG
+===================================================== */
+
+function renderLog(state) {
+
+  const container =
+    document.getElementById("log");
+
+
+  if (!selected.length) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+        Select a system to begin the simulation.
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const events = [];
+
+
+  selected.forEach(key => {
+
+    events.push({
+
+      time: "NOW",
+
+      type: "critical",
+
+      text:
+        `${SYSTEMS[key].name} has disappeared from the system.`
+
+    });
+
+  });
+
+
+  if (
+    currentTime >= 1 &&
+    state.warning.size
+  ) {
+
+    events.push({
+
+      time: "6 HOURS",
+
+      type: "warning",
+
+      text:
+        `${state.warning.size} dependent systems are beginning to experience disruption.`
+
+    });
+
+  }
+
+
+  if (
+    currentTime >= 2 &&
+    state.damaged.size
+  ) {
+
+    events.push({
+
+      time: "24 HOURS",
+
+      type: "warning",
+
+      text:
+        `${state.damaged.size} systems are now significantly impaired.`
+
+    });
+
+  }
+
+
+  if (
+    currentTime >= 3 &&
+    state.failed.size > selected.length
+  ) {
+
+    events.push({
+
+      time: "3 DAYS",
+
+      type: "critical",
+
+      text:
+        `Failure has propagated into ${state.failed.size - selected.length} additional systems.`
+
+    });
+
+  }
+
+
+  if (currentTime >= 4) {
+
+    events.push({
+
+      time: "1 WEEK",
+
+      type: "warning",
+
+      text:
+        "Secondary effects are now affecting interconnected infrastructure."
+
+    });
+
+  }
+
+
+  if (currentTime >= 5) {
+
+    events.push({
+
+      time: "1 MONTH",
+
+      type: "critical",
+
+      text:
+        "Long-term system dependencies are now fully exposed."
+
+    });
+
+  }
+
+
+  /*
+    Additional system-specific events.
+  */
+
+  if (
+    state.failed.has("food") &&
+    currentTime >= 3
+  ) {
+
+    events.push({
+
+      time: TIMES[currentTime],
+
+      type: "critical",
+
+      text:
+        "Food distribution is experiencing severe network disruption."
+
+    });
+
+  }
+
+
+  if (
+    state.failed.has("healthcare") &&
+    currentTime >= 3
+  ) {
+
+    events.push({
+
+      time: TIMES[currentTime],
+
+      type: "critical",
+
+      text:
+        "Healthcare capacity is being constrained by upstream failures."
+
+    });
+
+  }
+
+
+  if (
+    state.failed.has("economy") &&
+    currentTime >= 4
+  ) {
+
+    events.push({
+
+      time: TIMES[currentTime],
+
+      type: "critical",
+
+      text:
+        "Economic activity is experiencing broad secondary disruption."
+
+    });
+
+  }
+
+
+  container.innerHTML =
+    events.map(event => `
+
+      <div class="event">
+
+        <div class="event-time">
+          ${event.time}
+        </div>
+
+        <div
+          class="event-dot ${event.type}"
+        ></div>
+
+        <div class="event-text">
+          ${event.text}
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+function renderSummary(state) {
+
+  const summary =
+    document.getElementById(
+      "summary"
+    );
+
+
+  if (!selected.length) {
+
+    summary.innerHTML = `
+
+      <h3>
+        No active simulation
+      </h3>
+
+      <p>
+        Choose a system above to see how
+        its disappearance propagates through
+        connected infrastructure.
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  const stability =
+    calculateStability(state);
+
+
+  const direct =
+    selected.length;
+
+
+  const cascading =
+    Math.max(
+      0,
+      state.failed.size -
+      direct
+    );
+
+
+  let condition;
+
+
+  if (stability >= 80) {
+
+    condition =
+      "The network remains relatively stable, although early dependencies are visible.";
+
+  }
+
+  else if (stability >= 60) {
+
+    condition =
+      "The network is under significant pressure and several dependent systems are being affected.";
+
+  }
+
+  else if (stability >= 40) {
+
+    condition =
+      "The network is experiencing broad systemic disruption.";
+
+  }
+
+  else if (stability >= 20) {
+
+    condition =
+      "Multiple layers of infrastructure have become severely compromised.";
+
+  }
+
+  else {
+
+    condition =
+      "The simulated network has reached a highly disrupted state.";
+
+  }
+
+
+  summary.innerHTML = `
+
+    <h3>
+      ${TIMES[currentTime]} simulation
+    </h3>
+
+    <p>
+      ${direct} direct system failure${direct === 1 ? "" : "s"}
+      currently produce ${cascading} cascading failure${cascading === 1 ? "" : "s"}.
+      Overall modeled stability is ${stability}%.
+      ${condition}
+    </p>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function setTime(value) {
+
+  currentTime =
+    Math.max(
+      0,
+      Math.min(
+        5,
+        Number(value)
+      )
+    );
+
+
+  document.getElementById(
+    "timeSlider"
+  ).value =
+    currentTime;
+
+
+  renderSimulation();
+
+}
+
+
+function updateTime() {
+
+  setTime(
+    document.getElementById(
+      "timeSlider"
+    ).value
+  );
+
+}
+
+
+function stepForward() {
+
+  if (currentTime >= 5) {
+
+    stopPlay();
+
+    return;
+
+  }
+
+
+  currentTime++;
+
+  document.getElementById(
+    "timeSlider"
+  ).value =
+    currentTime;
+
+
+  renderSimulation();
+
+}
+
+
+function stepBackward() {
+
+  if (currentTime <= 0) {
+    return;
+  }
+
+
+  currentTime--;
+
+  document.getElementById(
+    "timeSlider"
+  ).value =
+    currentTime;
+
+
+  renderSimulation();
+
+}
+
+
+/* =====================================================
+   PLAY
+===================================================== */
+
+function togglePlay() {
+
+  if (playing) {
+
+    stopPlay();
+
+    return;
+
+  }
+
+
+  if (!selected.length) {
+
+    selectRandomSystem();
+
+  }
+
+
+  if (currentTime >= 5) {
+
+    currentTime = 0;
+
+    document.getElementById(
+      "timeSlider"
+    ).value = 0;
+
+  }
+
+
+  playing = true;
+
+
+  document.getElementById(
+    "playButton"
+  ).textContent =
+    "Pause";
+
+
+  startTimer();
+
+}
+
+
+function startTimer() {
+
+  clearInterval(playTimer);
+
+
+  const speed =
+    Number(
+      document.getElementById(
+        "speedSelect"
+      ).value
+    );
+
+
+  playTimer =
+    setInterval(() => {
+
+      if (currentTime >= 5) {
+
+        stopPlay();
+
+        return;
+
+      }
+
+
+      currentTime++;
+
+
+      document.getElementById(
+        "timeSlider"
+      ).value =
+        currentTime;
+
+
+      renderSimulation();
+
+
+    }, speed);
+
+}
+
+
+function stopPlay() {
+
+  playing = false;
+
+  clearInterval(playTimer);
+
+
+  document.getElementById(
+    "playButton"
+  ).textContent =
+    "Play";
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetSimulation() {
+
+  stopPlay();
+
+  selected = [];
+
+  currentTime = 0;
+
+  document.getElementById(
+    "timeSlider"
+  ).value = 0;
+
+  renderAll();
+
+}
+
+
+/* =====================================================
+   MASTER RENDER
+===================================================== */
+
+function renderSimulation() {
+
+  const state =
+    calculateState();
+
+
+  lastState =
+    state;
+
+
+  document.getElementById(
+    "currentScenario"
+  ).textContent =
+
+    selected.length
+      ? selected
+          .map(
+            key =>
+              SYSTEMS[key].name
+          )
+          .join(" + ")
+
+      : "Nothing has disappeared";
+
+
+  document.getElementById(
+    "timeDisplay"
+  ).textContent =
+    TIMES[currentTime];
+
+
+  renderStability(state);
+
+  renderImpact(state);
+
+  renderGraph(state);
+
+  renderDetails(state);
+
+  renderTimeline();
+
+  renderLog(state);
+
+  renderSummary(state);
+
+}
+
+
+/* =====================================================
+   MASTER RENDER
+===================================================== */
+
+function renderAll() {
+
+  renderScenarios(
+    document.getElementById(
+      "search"
+    ).value
+  );
+
+  renderSelected();
+
+  renderSimulation();
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    event => {
+
+      renderScenarios(
+        event.target.value
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   CATEGORY FILTER
+===================================================== */
+
+document
+  .getElementById(
+    "categoryFilter"
+  )
+  .addEventListener(
+    "change",
+    () => {
+
+      renderScenarios(
+        document.getElementById(
+          "search"
+        ).value
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   SPEED
+===================================================== */
+
+document
+  .getElementById(
+    "speedSelect"
+  )
+  .addEventListener(
+    "change",
+    () => {
+
+      if (playing) {
+
+        startTimer();
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   KEYBOARD CONTROLS
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    /*
+      Avoid interfering with
+      search inputs.
+    */
+
+    if (
+      event.target.tagName === "INPUT" ||
+      event.target.tagName === "SELECT"
+    ) {
+      return;
+    }
+
+
+    if (event.code === "Space") {
+
+      event.preventDefault();
+
+      togglePlay();
+
+    }
+
+
+    if (event.key === "ArrowRight") {
+
+      stepForward();
+
+    }
+
+
+    if (event.key === "ArrowLeft") {
+
+      stepBackward();
+
+    }
+
+
+    if (
+      event.key.toLowerCase() === "r"
+    ) {
+
+      resetSimulation();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderAll();
+
+</script>
+
+</body>
+</html>
